@@ -1,24 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import { Box } from '@chakra-ui/react';
 
 function App() {
+  window.addEventListener('load', function () {
+    var newVideo = document.getElementById('videoPlayer');
+    console.log(newVideo);
+    newVideo.addEventListener('ended', function () {
+      this.currentTime = 0;
+      this.play();
+    }, false);
+    newVideo.play();
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Box height={window.innerHeight} width={window.innerWidth}>
+      <video id="videoPlayer" autoPlay controls={false} width="100%" loop muted playsInline>
+        <source src="/videos/lola.mp4" type="video/mp4" />
+        Sorry, your browser doesn't support embedded videos.
+      </video>
+    </Box>
   );
 }
 
