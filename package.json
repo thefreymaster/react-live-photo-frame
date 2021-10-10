@@ -3,20 +3,29 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@chakra-ui/react": "^1.6.8",
-    "@emotion/react": "^11",
-    "@emotion/styled": "^11",
+    "@chakra-ui/react": "^1.6.9",
+    "@emotion/react": "^11.4.1",
+    "@emotion/styled": "^11.3.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "axios": "^0.22.0",
     "express": "^4.17.1",
-    "framer-motion": "^4",
+    "framer-motion": "^4.1.17",
     "react": "^17.0.2",
+    "react-analog-clock": "^2.1.0",
+    "react-device-detect": "^2.0.1",
     "react-dom": "^17.0.2",
+    "react-icons": "^4.3.1",
     "react-player": "^2.9.0",
+    "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
+    "socket.io": "^4.2.0",
+    "socket.io-client": "^4.2.0",
+    "typescript": "^4.4.3",
     "video-react": "^0.14.1",
-    "web-vitals": "^1.0.1"
+    "web-vitals": "^1.0.1",
+    "ws": "^8.2.3"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -41,5 +50,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.27",
+    "@types/react-router-dom": "^5.3.1"
+  },
+  "proxy": "http://localhost:4000"
 }
