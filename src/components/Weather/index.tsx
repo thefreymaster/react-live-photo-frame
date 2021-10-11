@@ -1,11 +1,13 @@
-import { ScaleFade, Text, useDisclosure } from '@chakra-ui/react';
+import { ScaleFade, Spinner, Text, useDisclosure } from '@chakra-ui/react';
 import { BsFillArrowUpCircleFill } from 'react-icons/bs';
 import { Box } from '@chakra-ui/layout';
 import React from 'react';
 import axios from 'axios';
+import { useIsDay } from '../../hooks/index';
 
 export const Weather = () => {
     const { isOpen } = useDisclosure();
+    const isDay = useIsDay();
 
     const [weather, setWeather] = React.useState({
         main: {
@@ -36,28 +38,28 @@ export const Weather = () => {
     }, [])
 
     if (loading) {
-        return <>"Loading"</>
+        return <><Spinner size="xl" /></>
     }
     return (
         <ScaleFade initialScale={0.9} in>
             <Box display="flex" flexDir="column">
                 <Box p={10} display="flex" justifyContent='center' alignItems='center'>
-                    <Text lineHeight="150px" fontWeight="100" fontSize="300px" color="white">{weather.main.temp.toFixed(0)}</Text>
+                    <Text lineHeight="150px" fontWeight="100" fontSize="300px" color={isDay ? "black" : "white"}>{weather.main.temp.toFixed(0)}</Text>
                 </Box>
                 <Box p={10} display="flex" justifyContent='center' alignItems='center'>
-                    <Text lineHeight="40px" fontWeight="100" fontSize="70px" color="white">{weather.name}</Text>
+                    <Text lineHeight="40px" fontWeight="100" fontSize="70px" color={isDay ? "black" : "white"}>{weather.name}</Text>
                 </Box>
                 <Box p={10} display="flex" justifyContent='center' alignItems='flex-start' flexDir="row">
                     <Box p={10} display="flex" justifyContent='center' alignItems='flex-start' flexDir="column">
-                        <Text lineHeight="60px" fontWeight="100" fontSize="100px" color="white">{weather.main.humidity.toFixed(0)}%</Text>
-                        <Text fontWeight="100" fontSize="40px" color="white">HUMIDITY</Text>
+                        <Text lineHeight="60px" fontWeight="100" fontSize="100px" color={isDay ? "black" : "white"}>{weather.main.humidity.toFixed(0)}%</Text>
+                        <Text fontWeight="100" fontSize="40px" color={isDay ? "black" : "white"}>HUMIDITY</Text>
                     </Box>
                     <Box p={10} display="flex" justifyContent='center' alignItems='flex-start' flexDir="column">
                         <Box display="flex" flexDir="row">
-                            <Text lineHeight="60px" fontWeight="100" fontSize="100px" color="white">{weather.wind.speed}mph</Text>
+                            <Text lineHeight="60px" fontWeight="100" fontSize="100px" color={isDay ? "black" : "white"}>{weather.wind.speed}mph</Text>
                             <BsFillArrowUpCircleFill color="#fff" fontSize="72px" style={{ marginLeft: 20, transform: `rotate(${weather.wind.deg}deg)`, transition: 'transform 1250ms ease-in-out' }} />
                         </Box>
-                        <Text fontWeight="100" fontSize="40px" color="white">WIND</Text>
+                        <Text fontWeight="100" fontSize="40px" color={isDay ? "black" : "white"}>WIND</Text>
                     </Box>
                 </Box>
 
