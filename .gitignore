@@ -8,6 +8,9 @@
 # videos
 /videos
 
+# env
+.env
+
 # testing
 /coverage
 
