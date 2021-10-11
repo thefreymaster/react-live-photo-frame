@@ -9,7 +9,7 @@ import { isMobile } from 'react-device-detect';
 import { io } from "socket.io-client";
 import { Provider } from './providers';
 
-const socket = io('http://localhost:4000');
+const socket = io('http://192.168.124.124:4000');
 
 const App = () => {
   const isDay = useIsDay();
