@@ -36,3 +36,7 @@ app.get("/videos/:file", (req, res) => {
     const { file } = req.params;
     res.sendFile(path.join(__dirname, '/videos', `${file}`));
 })
+
+app.get('/*', function (request, response) {
+    response.sendFile(path.resolve(__dirname, 'build/index.html'));
+});
