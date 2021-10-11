@@ -26,8 +26,8 @@ httpServer.listen(4000, () => {
 
 app.use(express.static(__dirname + '/build'));
 
-app.post("/api/change/:view", (req, res) => {
-    const { view } = req.body;
+app.get("/api/change/:view", (req, res) => {
+    const { view } = req.params;
     io.emit('change_view', view)
     return res.sendStatus(200);
 })

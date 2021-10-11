@@ -26,7 +26,6 @@ export const Controller = (props: { socket: any }) => {
     }, [])
 
     if (global.device === null) {
-        debugger
         return <Redirect to="/device" />
     }
 
