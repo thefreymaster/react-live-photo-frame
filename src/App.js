@@ -4,7 +4,7 @@ import { Box, IconButton } from '@chakra-ui/react';
 import { Routes } from './routes';
 import { useIsDay } from './hooks/index';
 import { CgController } from 'react-icons/cg';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { isMobile } from 'react-device-detect';
 import { io } from "socket.io-client";
 import { Provider } from './providers';
@@ -13,15 +13,37 @@ const socket = io('http://localhost:4000');
 
 const App = () => {
   const isDay = useIsDay();
+  const histroy = useHistory();
+  const [device, setDevice] = React.useState(localStorage.getItem('device'))
+
+  const changeRoute = (view) => {
+    switch (view) {
+      case 'videos':
+        histroy.push('/videos');
+        break;
+      case 'weather':
+        histroy.push('/weather');
+        break;
+      case 'clock':
+        histroy.push('/clock');
+        break;
+
+      default:
+        break;
+    }
+  }
 
   React.useEffect(() => {
     socket.on("change_view", (view) => {
-      console.log(view);
+      console.log(view)
+      if (device === 'frame') {
+        changeRoute(view);
+      }
     });
   }, []);
 
   return (
-    <Provider value={socket}>
+    <Provider socket={socket} device={device} setDevice={setDevice}>
       <Box
         height={window.innerHeight}
         width={window.innerWidth}
@@ -33,7 +55,7 @@ const App = () => {
         }}
         pt={isMobile && 8}
       >
-        <Routes socket={socket} />
+        <Routes socket={socket} device={device} />
         <Link to="/controller">
           <IconButton colorScheme="red" icon={<CgController />} style={{
             position: 'fixed',

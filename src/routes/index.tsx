@@ -3,12 +3,14 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { Clock } from '../components/Clock/index';
 import { Controller } from '../components/Controller';
 import { Video } from '../components/Video/index';
+import { Device } from '../components/Device/index';
+import { Weather } from '../components/Weather';
 
-export const Routes = (props: { socket: any }) => {
+export const Routes = (props: { socket: any, device: string }) => {
     return (
         <Switch>
             <Route path="/weather">
-                weather
+                <Weather />
             </Route>
             <Route path="/clock">
                 <Clock />
@@ -18,6 +20,9 @@ export const Routes = (props: { socket: any }) => {
             </Route>
             <Route path="/controller">
                 <Controller socket={props.socket} />
+            </Route>
+            <Route path="/device">
+                <Device />
             </Route>
             <Route path="/*">
                 <Redirect to="/controller" />

@@ -13,9 +13,9 @@ const io = new Server(httpServer, {
 });
 
 io.on("connection", (socket) => {
-    socket.on("change", (arg) => {
-        console.log(arg); // world
-        socket.emit('change_view', arg)
+    socket.on("change", (view) => {
+        console.log({ io: "change", view });
+        socket.broadcast.emit('change_view', view)
     })
 }
 );
@@ -28,7 +28,7 @@ app.use(express.static(__dirname + '/build'));
 
 app.post("/api/change/:view", (req, res) => {
     const { view } = req.body;
-    io.emit('message', { view })
+    io.emit('change_view', view)
     return res.sendStatus(200);
 })
 

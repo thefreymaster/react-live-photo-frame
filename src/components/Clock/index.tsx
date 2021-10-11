@@ -1,9 +1,9 @@
 import React from 'react';
-import AnalogClock, { Themes } from 'react-analog-clock';
+import AnalogClock from 'react-analog-clock';
 import { useIsDay } from '../../hooks/index';
 
 export const Clock = () => {
-    const isDay = useIsDay()
+    const isDay = useIsDay();
     const theme = {
         background: isDay ? '#fff' : '#000',
         center: isDay ? '#000' : '#fff',
