@@ -47,7 +47,7 @@ export const Weather = () => {
             setTimeout(() => {
                 setloading(true);
                 getWeather();
-            }, 300000);
+            }, 100000);
         }
         getWeather();
     }, []);
