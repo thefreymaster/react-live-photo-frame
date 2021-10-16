@@ -3,6 +3,7 @@ import { IconButton, Text, ScaleFade, useDisclosure } from '@chakra-ui/react';
 import { Box, Divider } from '@chakra-ui/layout';
 import { AiOutlineClockCircle, AiFillVideoCamera } from 'react-icons/ai';
 import { TiWeatherPartlySunny } from 'react-icons/ti';
+import { FaDigitalTachograph } from 'react-icons/fa';
 import { useIsDay } from '../../hooks/index';
 import { useGlobalState } from '../../providers/index';
 import { useHistory, Redirect } from 'react-router-dom';
@@ -43,7 +44,7 @@ export const Controller = (props: { socket: any }) => {
                         fontSize="4xl"
                         onClick={() => global.device === 'controller' ? props.socket.emit('change', 'clock') : handleIsOpen('/clock')}
                         m={1}
-                        colorScheme="red"
+                        colorScheme="gray"
                         isFullWidth
                         icon={<AiOutlineClockCircle />}
                     />
@@ -53,7 +54,7 @@ export const Controller = (props: { socket: any }) => {
                         minH="90px"
                         fontSize="4xl"
                         onClick={() => global.device === 'controller' ? props.socket.emit('change', 'weather') : handleIsOpen('/weather')}
-                        m={1} colorScheme="red" isFullWidth icon={<TiWeatherPartlySunny />}
+                        m={1} colorScheme="gray" isFullWidth icon={<TiWeatherPartlySunny />}
                     />
                     <IconButton
                         aria-label="clock"
@@ -61,7 +62,15 @@ export const Controller = (props: { socket: any }) => {
                         minH="90px"
                         fontSize="4xl"
                         onClick={() => global.device === 'controller' ? props.socket.emit('change', 'videos') : handleIsOpen('/videos')}
-                        m={1} colorScheme="red" isFullWidth icon={<AiFillVideoCamera />}
+                        m={1} colorScheme="gray" isFullWidth icon={<AiFillVideoCamera />}
+                    />
+                    <IconButton
+                        aria-label="clock"
+                        maxW="30%"
+                        minH="90px"
+                        fontSize="4xl"
+                        onClick={() => global.device === 'controller' ? props.socket.emit('change', 'digital-clock') : handleIsOpen('/digital-clock')}
+                        m={1} colorScheme="gray" isFullWidth icon={<FaDigitalTachograph />}
                     />
                 </Box>
             </Box>

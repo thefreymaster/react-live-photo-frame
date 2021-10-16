@@ -5,6 +5,7 @@ import { Controller } from '../components/Controller';
 import { Video } from '../components/Video/index';
 import { Device } from '../components/Device/index';
 import { Weather } from '../components/Weather';
+import { DigitalClock } from '../components/DigitalClock/index';
 
 export const Routes = (props: { socket: any, device: string }) => {
     return (
@@ -14,6 +15,9 @@ export const Routes = (props: { socket: any, device: string }) => {
             </Route>
             <Route path="/clock">
                 <Clock />
+            </Route>
+            <Route path="/digital-clock">
+                <DigitalClock />
             </Route>
             <Route path="/videos">
                 <Video />

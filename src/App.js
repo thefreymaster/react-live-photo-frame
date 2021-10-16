@@ -57,7 +57,7 @@ const App = () => {
       >
         <Routes socket={socket} device={device} />
         <Link to="/controller">
-          <IconButton colorScheme="red" size="lg" icon={<CgController />} style={{
+          <IconButton colorScheme="gray" size="lg" icon={<CgController />} style={{
             position: 'fixed',
             bottom: 0,
             right: 0,

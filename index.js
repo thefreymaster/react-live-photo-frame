@@ -5,6 +5,9 @@ const path = require("path");
 
 const app = express();
 const httpServer = createServer(app);
+
+const fs = require('fs');
+
 const io = new Server(httpServer, {
     cors: {
         origin: ["http://localhost:3000", "http://localhost:4000", "http://192.168.124.124:4000"],
@@ -21,10 +24,16 @@ io.on("connection", (socket) => {
 );
 
 httpServer.listen(4000, () => {
-    console.log('server running')
+    console.log('Live Photo Frame server running')
 });
 
 app.use(express.static(__dirname + '/build'));
+
+app.get("/api/videos/list", (req, res) => {
+    fs.readdir(path.join(__dirname, '/videos'), (err, files) => {
+        res.send(files);
+    })
+})
 
 app.get("/api/change/:view", (req, res) => {
     const { view } = req.params;
