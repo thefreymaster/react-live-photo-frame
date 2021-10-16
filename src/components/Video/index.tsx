@@ -12,7 +12,7 @@ export const Video = () => {
     console.log(data)
     return (
         <video id="videoPlayer" autoPlay controls={false} width="100%" loop muted playsInline>
-            <source src={`/videos/${data![0]}`} type="video/mp4" />
+            <source src={`/videos/troy.mp4`} type="video/mp4" />
             Sorry, your browser doesn't support embedded videos.
         </video>
     )

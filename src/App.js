@@ -16,28 +16,11 @@ const App = () => {
   const histroy = useHistory();
   const [device, setDevice] = React.useState(localStorage.getItem('device'))
 
-  const changeRoute = (view) => {
-    switch (view) {
-      case 'videos':
-        histroy.push('/videos');
-        break;
-      case 'weather':
-        histroy.push('/weather');
-        break;
-      case 'clock':
-        histroy.push('/clock');
-        break;
-
-      default:
-        break;
-    }
-  }
-
   React.useEffect(() => {
     socket.on("change_view", (view) => {
       console.log(view)
       if (device === 'frame') {
-        changeRoute(view);
+        histroy.push(`/${view}`);
       }
     });
   }, []);
