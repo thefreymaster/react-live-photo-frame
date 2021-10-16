@@ -2,8 +2,10 @@ import { Box } from '@chakra-ui/layout';
 import { Fade, Text } from '@chakra-ui/react';
 
 import React from 'react';
+import { useIsDay } from '../../hooks/index';
 
 export const DigitalClock = () => {
+    const isDay = useIsDay();
     let now = new Date();
     const [time, setTime] = React.useState(now.toLocaleTimeString());
     React.useLayoutEffect(() => {
@@ -18,7 +20,7 @@ export const DigitalClock = () => {
     return (
         <Fade in>
             <Box>
-                <Text fontSize="8em">{time}</Text>
+                <Text fontSize="8em" color={isDay ? 'black' : 'white'}>{time}</Text>
             </Box>
         </Fade>
     )
