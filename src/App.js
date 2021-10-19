@@ -19,6 +19,9 @@ const App = () => {
   React.useEffect(() => {
     socket.on("change_view", (view) => {
       console.log(view)
+      if(view === 'reload'){
+        window.location.reload();
+      }
       if (device === 'frame') {
         histroy.push(`/${view}`);
       }

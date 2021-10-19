@@ -14,7 +14,7 @@ export const Video = () => {
     console.log(data)
     return (
         <video style={{ filter: 'grayscale(100%)', overflow: 'hidden' }} id="videoPlayer" autoPlay controls={false} width="100%" loop muted playsInline>
-            <source src={`/videos/${name}.mp4`} type="video/mp4" />
+            <source src={`/videos/${name}`} type="video/mp4" />
             Sorry, your browser doesn't support embedded videos.
         </video>
     )

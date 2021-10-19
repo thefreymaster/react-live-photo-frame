@@ -1,14 +1,24 @@
 import React from 'react';
-import { IconButton, Text, ScaleFade, useDisclosure, Button } from '@chakra-ui/react';
+import { IconButton, Text, ScaleFade, useDisclosure, Button, Spinner } from '@chakra-ui/react';
 import { Box, Divider } from '@chakra-ui/layout';
 import { AiOutlineClockCircle, AiFillVideoCamera } from 'react-icons/ai';
 import { TiWeatherPartlySunny } from 'react-icons/ti';
 import { FaDigitalTachograph } from 'react-icons/fa';
+import { IoIosRefresh } from 'react-icons/io';
+
 import { useIsDay } from '../../hooks/index';
 import { useGlobalState } from '../../providers/index';
 import { useHistory, Redirect } from 'react-router-dom';
+import { getVideosList } from '../../api';
+import { useQuery } from 'react-query';
+
+const capitalizeFirstLetter = (string: string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1).replace('.mp4', '');
+}
 
 export const Controller = (props: { socket: any }) => {
+    const { isLoading, data }: any = useQuery('videos', () => getVideosList());
+
     const isDay = useIsDay();
     const global = useGlobalState();
     const history = useHistory();
@@ -28,6 +38,10 @@ export const Controller = (props: { socket: any }) => {
 
     if (global.device === null) {
         return <Redirect to="/device" />
+    }
+
+    if (isLoading) {
+        return <Spinner />
     }
 
     return (
@@ -64,32 +78,29 @@ export const Controller = (props: { socket: any }) => {
                         onClick={() => global.device === 'controller' ? props.socket.emit('change', 'digital-clock') : handleIsOpen('/digital-clock')}
                         m={1} colorScheme="gray" isFullWidth icon={<FaDigitalTachograph />}
                     />
-                    <Button
+                    <IconButton
                         aria-label="clock"
                         maxW="30%"
                         minH="90px"
                         fontSize="4xl"
-                        onClick={() => global.device === 'controller' ? props.socket.emit('change', 'videos/troy') : handleIsOpen('/videos/troy')}
-                        m={1} colorScheme="gray" isFullWidth
-                    >
-                        <Box display="flex-column" alignItems="center" justifyContent="center">
-                            <AiFillVideoCamera />
-                            <Text fontSize="small">Troy</Text>
-                        </Box>
-                    </Button>
-                    <Button
-                        aria-label="clock"
-                        maxW="30%"
-                        minH="90px"
-                        fontSize="4xl"
-                        onClick={() => global.device === 'controller' ? props.socket.emit('change', 'videos/lola') : handleIsOpen('/videos/lola')}
-                        m={1} colorScheme="gray" isFullWidth
-                    >
-                        <Box display="flex-column" alignItems="center" justifyContent="center">
-                            <AiFillVideoCamera />
-                            <Text fontSize="small">Lola</Text>
-                        </Box>
-                    </Button>
+                        onClick={() => global.device === 'controller' ? props.socket.emit('change', 'refresh') : window.location.reload()}
+                        m={1} colorScheme="gray" isFullWidth icon={<IoIosRefresh />}
+                    />
+                    {data.map((item: any) => (
+                        <Button
+                            aria-label="clock"
+                            maxW="30%"
+                            minH="90px"
+                            fontSize="4xl"
+                            onClick={() => global.device === 'controller' ? props.socket.emit('change', `videos/${item}`) : handleIsOpen(`videos/${item}`)}
+                            m={1} colorScheme="gray" isFullWidth
+                        >
+                            <Box display="flex-column" alignItems="center" justifyContent="center">
+                                <AiFillVideoCamera />
+                                <Text fontSize="small">{capitalizeFirstLetter(item)}</Text>
+                            </Box>
+                        </Button>
+                    ))}
                 </Box>
             </Box>
         </ScaleFade>
