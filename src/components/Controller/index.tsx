@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconButton, Text, ScaleFade, useDisclosure } from '@chakra-ui/react';
+import { IconButton, Text, ScaleFade, useDisclosure, Button } from '@chakra-ui/react';
 import { Box, Divider } from '@chakra-ui/layout';
 import { AiOutlineClockCircle, AiFillVideoCamera } from 'react-icons/ai';
 import { TiWeatherPartlySunny } from 'react-icons/ti';
@@ -61,17 +61,35 @@ export const Controller = (props: { socket: any }) => {
                         maxW="30%"
                         minH="90px"
                         fontSize="4xl"
-                        onClick={() => global.device === 'controller' ? props.socket.emit('change', 'videos') : handleIsOpen('/videos')}
-                        m={1} colorScheme="gray" isFullWidth icon={<AiFillVideoCamera />}
+                        onClick={() => global.device === 'controller' ? props.socket.emit('change', 'digital-clock') : handleIsOpen('/digital-clock')}
+                        m={1} colorScheme="gray" isFullWidth icon={<FaDigitalTachograph />}
                     />
-                    <IconButton
+                    <Button
                         aria-label="clock"
                         maxW="30%"
                         minH="90px"
                         fontSize="4xl"
-                        onClick={() => global.device === 'controller' ? props.socket.emit('change', 'digital-clock') : handleIsOpen('/digital-clock')}
-                        m={1} colorScheme="gray" isFullWidth icon={<FaDigitalTachograph />}
-                    />
+                        onClick={() => global.device === 'controller' ? props.socket.emit('change', 'videos/troy') : handleIsOpen('/videos/troy')}
+                        m={1} colorScheme="gray" isFullWidth
+                    >
+                        <Box display="flex-column" alignItems="center" justifyContent="center">
+                            <AiFillVideoCamera />
+                            <Text fontSize="small">Troy</Text>
+                        </Box>
+                    </Button>
+                    <Button
+                        aria-label="clock"
+                        maxW="30%"
+                        minH="90px"
+                        fontSize="4xl"
+                        onClick={() => global.device === 'controller' ? props.socket.emit('change', 'videos/lola') : handleIsOpen('/videos/lola')}
+                        m={1} colorScheme="gray" isFullWidth
+                    >
+                        <Box display="flex-column" alignItems="center" justifyContent="center">
+                            <AiFillVideoCamera />
+                            <Text fontSize="small">Lola</Text>
+                        </Box>
+                    </Button>
                 </Box>
             </Box>
         </ScaleFade>

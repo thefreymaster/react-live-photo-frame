@@ -28,7 +28,7 @@ export const Routes = (props: { socket: any, device: string }) => {
             <Route path="/digital-clock">
                 <DigitalClock />
             </Route>
-            <Route path="/videos">
+            <Route path="/videos/:name">
                 <Video />
             </Route>
             <Route path="/controller">
