@@ -4,7 +4,6 @@ import { Box, Divider } from '@chakra-ui/layout';
 import { AiOutlineClockCircle, AiFillVideoCamera } from 'react-icons/ai';
 import { TiWeatherPartlySunny } from 'react-icons/ti';
 import { FaDigitalTachograph } from 'react-icons/fa';
-import { IoIosRefresh } from 'react-icons/io';
 
 import { useIsDay } from '../../hooks/index';
 import { useGlobalState } from '../../providers/index';
@@ -78,14 +77,9 @@ export const Controller = (props: { socket: any }) => {
                         onClick={() => global.device === 'controller' ? props.socket.emit('change', 'digital-clock') : handleIsOpen('/digital-clock')}
                         m={1} colorScheme="gray" isFullWidth icon={<FaDigitalTachograph />}
                     />
-                    <IconButton
-                        aria-label="clock"
-                        maxW="30%"
-                        minH="90px"
-                        fontSize="4xl"
-                        onClick={() => global.device === 'controller' ? props.socket.emit('change', 'refresh') : window.location.reload()}
-                        m={1} colorScheme="gray" isFullWidth icon={<IoIosRefresh />}
-                    />
+                </Box>
+                <Divider color="whiteAlpha.300" marginBottom={4} mt={4} />
+                <Box flexDir="row" flexWrap="wrap" display="flex" justifyContent="center">
                     {data.map((item: any) => (
                         <Button
                             aria-label="clock"

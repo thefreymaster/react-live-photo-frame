@@ -8,6 +8,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { isMobile } from 'react-device-detect';
 import { io } from "socket.io-client";
 import { Provider } from './providers';
+import { IoIosRefresh } from 'react-icons/io';
 
 const socket = io('http://192.168.124.124:4000');
 
@@ -19,10 +20,10 @@ const App = () => {
   React.useEffect(() => {
     socket.on("change_view", (view) => {
       console.log(view)
-      if(view === 'reload'){
-        window.location.reload();
-      }
       if (device === 'frame') {
+        if (view === 'reload') {
+          window.location.reload();
+        }
         histroy.push(`/${view}`);
       }
     });
@@ -52,6 +53,17 @@ const App = () => {
             minWidth: 70
           }} />
         </Link>
+        <IconButton colorScheme="gray" size="lg" icon={<IoIosRefresh />} style={{
+          position: 'fixed',
+          bottom: 0,
+          left: 0,
+          borderRadius: '0px 5px 0px',
+          minHeight: 70,
+          minWidth: 70,
+        }}
+          onClick={() => device === 'controller' ? socket.emit('change', 'refresh') : window.location.reload()}
+
+        />
       </Box>
     </Provider>
   );
