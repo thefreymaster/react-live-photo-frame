@@ -14,6 +14,7 @@ export const Weather = () => {
         main: {
             temp: 0,
             humidity: 0,
+            feels_like: 0,
         },
         name: '',
         wind: {
@@ -33,7 +34,7 @@ export const Weather = () => {
     const [loading, setloading] = React.useState(true);
 
     React.useLayoutEffect(() => {
-        const getForcast = async (lat: number, long: number) => {
+        const getForcast = async () => {
             const fcast = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${process.env.REACT_APP_LOCATION}&appid=${process.env.REACT_APP_OPENWEATHERMAP}&units=imperial`);
             setForcast(fcast.data);
             setloading(false);
@@ -42,12 +43,12 @@ export const Weather = () => {
         const getWeather = async () => {
             const result: any = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${process.env.REACT_APP_LOCATION}&appid=${process.env.REACT_APP_OPENWEATHERMAP}&units=imperial`)
             console.log(result.data);
-            getForcast(result.data.coord.lat, result.data!.coord.lon);
+            getForcast();
             setWeather(result.data);
             setTimeout(() => {
                 setloading(true);
                 getWeather();
-            }, 100000);
+            }, 60000);
         }
         getWeather();
     }, []);
@@ -69,7 +70,7 @@ export const Weather = () => {
                             <Text lineHeight="40px" fontWeight="300" fontSize="2em" color={isDay ? "black" : "white"}>{today.toDateString()}</Text>
                         </Box>
                         <Box pl={2} display="flex" justifyContent='flex-start' alignItems='flex-start'>
-                            <Text lineHeight="30px" fontWeight="200" fontSize="1.5em" color={isDay ? "black" : "white"}>
+                            <Text lineHeight="30px" fontWeight="400" fontSize="1.5em" color={isDay ? "black" : "white"}>
                                 <DigitalTime />
                             </Text>
                         </Box>
@@ -92,6 +93,19 @@ export const Weather = () => {
                     </Box>
                     <Box flexGrow={1} />
                     <Divider orientation="vertical" />
+                    <Box display="flex" flexDir="column">
+                        <Box display="flex" justifyContent='flex-end' alignItems='center' flexDir='column'>
+                            <Text lineHeight="60px" fontWeight="400" fontSize="3em" color={isDay ? "black" : "white"}>{weather.main.humidity}%</Text>
+                            <Text fontWeight="100" fontSize="2em" color={isDay ? "black" : "white"}>Humidity</Text>
+                        </Box>
+                        <Box flexGrow={1} />
+                        <Divider mt={2} mb={2} />
+                        <Box flexGrow={1} />
+                        <Box display="flex" justifyContent='flex-end' alignItems='center' flexDir='column'>
+                            <Text lineHeight="60px" fontWeight="400" fontSize="3em" color={isDay ? "black" : "white"}>{weather.main.feels_like.toFixed(0)}°</Text>
+                            <Text fontWeight="100" fontSize="2em" color={isDay ? "black" : "white"}>Feels Like</Text>
+                        </Box>
+                    </Box>
                     <Box flexGrow={1} />
                     <Box display="flex" justifyContent='flex-end' alignItems='center' flexDir='column'>
                         <BsFillArrowUpCircleFill color={isDay ? "black" : "white"} fontSize="72px" style={{ transform: `rotate(${weather.wind.deg}deg)`, transition: 'transform 1250ms ease-in-out' }} />
@@ -99,6 +113,7 @@ export const Weather = () => {
                         <Text fontWeight="100" fontSize="2em" color={isDay ? "black" : "white"}>Wind Direction</Text>
                     </Box>
                     <Box flexGrow={1} />
+
                 </Box>
                 <Divider mt={12} opacity={isDay ? 0.5 : 0.1} />
                 <Box display="flex" justifyContent='flex-start' alignItems='flex-start' flexDir='row' width="100%">
