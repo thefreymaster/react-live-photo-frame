@@ -20,7 +20,7 @@ export const DigitalClock = () => {
     return (
         <Fade in>
             <Box>
-                <Text fontSize="8em" color={isDay ? 'black' : 'white'}>{time}</Text>
+                <Text fontFamily="'Roboto Mono', monospace" fontSize="8em" color={isDay ? 'black' : 'white'}>{time}</Text>
             </Box>
         </Fade>
     )
