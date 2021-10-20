@@ -34,19 +34,31 @@ export const Weather = () => {
     const [loading, setloading] = React.useState(true);
 
     React.useLayoutEffect(() => {
-        const getForcast = async () => {
+        const getForcast = async (lat: number, long: number) => {
             const fcast = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${process.env.REACT_APP_LOCATION}&appid=${process.env.REACT_APP_OPENWEATHERMAP}&units=imperial`);
             setForcast(fcast.data);
             setloading(false);
+        }
+        const getWeather = async () => {
+            const result: any = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${process.env.REACT_APP_LOCATION}&appid=${process.env.REACT_APP_OPENWEATHERMAP}&units=imperial`)
+            getForcast(result.data.coord.lat, result.data!.coord.lon);
+            setWeather(result.data);
+        }
+        getWeather();
+    }, []);
+
+    React.useLayoutEffect(() => {
+        const getForcast = async (lat: number, long: number) => {
+            const fcast = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${process.env.REACT_APP_LOCATION}&appid=${process.env.REACT_APP_OPENWEATHERMAP}&units=imperial`);
+            setForcast(fcast.data);
             console.log(fcast.data);
         }
         const getWeather = async () => {
             const result: any = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${process.env.REACT_APP_LOCATION}&appid=${process.env.REACT_APP_OPENWEATHERMAP}&units=imperial`)
             console.log(result.data);
-            getForcast();
+            getForcast(result.data.coord.lat, result.data!.coord.lon);
             setWeather(result.data);
             setTimeout(() => {
-                setloading(true);
                 getWeather();
             }, 60000);
         }
