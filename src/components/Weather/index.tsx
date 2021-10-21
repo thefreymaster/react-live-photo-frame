@@ -89,7 +89,7 @@ export const Weather = () => {
                         <Box pl={2} display="flex" justifyContent='flex-start' alignItems='flex-start'>
                             <DigitalClock fontSize="5em" />
                         </Box>
-                        <Divider marginBottom="10" m={16} opacity={isDay ? 0.6 : 0.5} />
+                        <Divider marginBottom="10" mt={16} mb={16} opacity={isDay ? 0.6 : 0.5} />
                         <Box p={2} display="flex" justifyContent='flex-start' alignItems='flex-start'>
                             <Text lineHeight="40px" fontWeight="400" fontSize="6em" color={isDay ? "black" : "white"}>{weather.name}</Text>
                         </Box>
@@ -98,7 +98,7 @@ export const Weather = () => {
                         </Box>
                     </Box>
                     <Box flexGrow={1} />
-                    <Divider orientation="vertical" m={16} opacity={isDay ? 0.6 : 0.5} />
+                    <Divider orientation="vertical" mt={16} mb={16} opacity={isDay ? 0.6 : 0.5} />
                     <Box flexGrow={1} />
                     <Box>
                         <Box display="flex" justifyContent='flex-start' alignItems='flex-start'>
@@ -106,7 +106,7 @@ export const Weather = () => {
                         </Box>
                     </Box>
                 </Box>
-                <Divider mt={5} mb={5} m={16} opacity={isDay ? 0.6 : 0.5} />
+                <Divider mt={5} mb={5} opacity={isDay ? 0.6 : 0.5} />
                 <Box display="flex" flexDir="row">
                     <Box pt={5} display="flex" justifyContent='flex-start' alignItems='flex-start' flexDir='column'>
                         <Text lineHeight="0.9em" fontWeight="100" fontSize="14em" color={isDay ? "black" : "white"}>
@@ -138,7 +138,7 @@ export const Weather = () => {
                     <Box flexGrow={1} />
 
                 </Box>
-                <Divider mt={12} m={16} opacity={isDay ? 0.6 : 0.5} />
+                <Divider mt={12} mb={16} opacity={isDay ? 0.6 : 0.5} />
                 <Box display="flex" justifyContent='flex-start' alignItems='flex-start' flexDir='row' width="100%">
                     {fiveDayForcast.map((item: any, index: any) => {
                         if (index < 4) {
