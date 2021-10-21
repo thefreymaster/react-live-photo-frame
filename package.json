@@ -14,6 +14,7 @@
     "framer-motion": "^4.1.17",
     "react": "^17.0.2",
     "react-analog-clock": "^2.1.0",
+    "react-countup": "^6.0.0",
     "react-device-detect": "^2.0.1",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",

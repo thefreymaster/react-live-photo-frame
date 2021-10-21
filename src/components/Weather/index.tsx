@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import { ScaleFade, Spinner, Text } from '@chakra-ui/react';
 import { BsFillArrowUpCircleFill } from 'react-icons/bs';
 import { Box, Divider } from '@chakra-ui/layout';
@@ -5,7 +6,8 @@ import React from 'react';
 import axios from 'axios';
 import { useIsDay } from '../../hooks/index';
 import { Future } from './Future';
-import { DigitalTime } from '../DigitalTime';
+import CountUp from 'react-countup';
+import { DigitalClock } from '../DigitalClock';
 
 export const Weather = () => {
     const isDay = useIsDay();
@@ -32,6 +34,7 @@ export const Weather = () => {
     });
 
     const [loading, setloading] = React.useState(true);
+    const [previousTemp, setPreviousTemp]: any = React.useState();
 
     React.useLayoutEffect(() => {
         const getForcast = async (lat: number, long: number) => {
@@ -43,6 +46,7 @@ export const Weather = () => {
             const result: any = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${process.env.REACT_APP_LOCATION}&appid=${process.env.REACT_APP_OPENWEATHERMAP}&units=imperial`)
             getForcast(result.data.coord.lat, result.data!.coord.lon);
             setWeather(result.data);
+            setPreviousTemp(weather.main.temp);
         }
         getWeather();
     }, []);
@@ -67,6 +71,13 @@ export const Weather = () => {
     const today = new Date();
     const [current] = weather.weather;
 
+    const fiveDayForcast: any = [];
+    forcast.list.map((item: any) => {
+        if (item.dt_txt.includes("15:00:00")) {
+            fiveDayForcast.push(item)
+        }
+    }, [])
+
     if (loading) {
         return <><Spinner size="xl" /></>
     }
@@ -75,21 +86,19 @@ export const Weather = () => {
             <Box display="flex" flexDir="column">
                 <Box display="flex" flexDir="row" alignItems="center">
                     <Box display="flex" flexDir="column">
-                        <Box p={2} display="flex" justifyContent='flex-start' alignItems='flex-start'>
-                            <Text lineHeight="40px" fontWeight="400" fontSize="4em" color={isDay ? "black" : "white"}>{weather.name}</Text>
-                        </Box>
-                        <Box p={2} display="flex" justifyContent='flex-start' alignItems='flex-start'>
-                            <Text lineHeight="40px" fontWeight="300" fontSize="2em" color={isDay ? "black" : "white"}>{today.toDateString()}</Text>
-                        </Box>
                         <Box pl={2} display="flex" justifyContent='flex-start' alignItems='flex-start'>
-                            <Text lineHeight="30px" fontWeight="400" fontSize="1.5em" color={isDay ? "black" : "white"}>
-                                <DigitalTime />
-                            </Text>
+                            <DigitalClock fontSize="5em" />
                         </Box>
-
+                        <Divider marginBottom="10" opacity={isDay ? 0.5 : 0.1} />
+                        <Box p={2} display="flex" justifyContent='flex-start' alignItems='flex-start'>
+                            <Text lineHeight="40px" fontWeight="400" fontSize="6em" color={isDay ? "black" : "white"}>{weather.name}</Text>
+                        </Box>
+                        <Box p={2} display="flex" justifyContent='flex-start' alignItems='flex-start'>
+                            <Text lineHeight="50px" fontWeight="300" fontSize="2.5em" color={isDay ? "black" : "white"}>{today.toDateString()}</Text>
+                        </Box>
                     </Box>
                     <Box flexGrow={1} />
-                    <Divider orientation="vertical" />
+                    <Divider orientation="vertical" opacity={isDay ? 0.5 : 0.1} />
                     <Box flexGrow={1} />
                     <Box>
                         <Box display="flex" justifyContent='flex-start' alignItems='flex-start'>
@@ -100,7 +109,9 @@ export const Weather = () => {
                 <Divider mt={5} mb={5} opacity={isDay ? 0.5 : 0.1} />
                 <Box display="flex" flexDir="row">
                     <Box pt={5} display="flex" justifyContent='flex-start' alignItems='flex-start' flexDir='column'>
-                        <Text lineHeight="0.9em" fontWeight="100" fontSize="14em" color={isDay ? "black" : "white"}>{weather.main.temp.toFixed(0)}°</Text>
+                        <Text lineHeight="0.9em" fontWeight="100" fontSize="14em" color={isDay ? "black" : "white"}>
+                            <CountUp useEasing duration="6" start={previousTemp || weather.main.temp - 10} end={weather.main.temp} />°
+                        </Text>
                         <Text fontWeight="100" fontSize="2em" color={isDay ? "black" : "white"}>{current.main}, {current.description}</Text>
                     </Box>
                     <Box flexGrow={1} />
@@ -122,14 +133,14 @@ export const Weather = () => {
                     <Box display="flex" justifyContent='flex-end' alignItems='center' flexDir='column'>
                         <BsFillArrowUpCircleFill color={isDay ? "black" : "white"} fontSize="72px" style={{ transform: `rotate(${weather.wind.deg}deg)`, transition: 'transform 1250ms ease-in-out' }} />
                         <Text lineHeight="60px" fontWeight="200" fontSize="3em" color={isDay ? "black" : "white"}>{weather.wind.speed}mph</Text>
-                        <Text fontWeight="100" fontSize="2em" color={isDay ? "black" : "white"}>Wind Direction</Text>
+                        <Text fontWeight="100" fontSize="2em" color={isDay ? "black" : "white"}>Wind</Text>
                     </Box>
                     <Box flexGrow={1} />
 
                 </Box>
                 <Divider mt={12} opacity={isDay ? 0.5 : 0.1} />
                 <Box display="flex" justifyContent='flex-start' alignItems='flex-start' flexDir='row' width="100%">
-                    {forcast.list.map((item, index) => {
+                    {fiveDayForcast.map((item: any, index: any) => {
                         if (index < 4) {
                             return (
                                 <>
