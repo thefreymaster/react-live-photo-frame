@@ -7,11 +7,11 @@ import { useIsDay } from '../../hooks/index';
 export const DigitalClock = (props: { fontSize?: string }) => {
     const isDay = useIsDay();
     let now = new Date();
-    const [time, setTime] = React.useState(now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
+    const [time, setTime] = React.useState(now.toLocaleTimeString());
     React.useLayoutEffect(() => {
         const getTime = () => {
             setTimeout(() => {
-                setTime(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
+                setTime(new Date().toLocaleTimeString());
                 getTime();
             }, 1000);
         }
