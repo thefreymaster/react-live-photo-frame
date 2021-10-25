@@ -4,7 +4,7 @@ import { Box, IconButton } from '@chakra-ui/react';
 import { Routes } from './routes';
 import { useIsDay } from './hooks/index';
 import { CgController } from 'react-icons/cg';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { isMobile } from 'react-device-detect';
 import { io } from "socket.io-client";
 import { Provider } from './providers';
@@ -15,7 +15,15 @@ const socket = io('http://192.168.124.124:4000');
 const App = () => {
   const isDay = useIsDay();
   const histroy = useHistory();
-  const [device, setDevice] = React.useState(localStorage.getItem('device'))
+  const location = useLocation();
+  const [device, setDevice] = React.useState(localStorage.getItem('device'));
+
+  const getBackgroundColor = () => {
+    if(location.pathname.includes('holiday')){
+      return 'black'
+    }
+    return isDay ? '#fff' : '#000'
+  }
 
   React.useEffect(() => {
     socket.on("change_view", (view) => {
@@ -38,7 +46,7 @@ const App = () => {
         alignItems={isMobile ? "flex-start" : "center"}
         justifyContent='center'
         style={{
-          backgroundColor: isDay ? '#fff' : '#000'
+          backgroundColor: getBackgroundColor(),
         }}
         pt={isMobile && 8}
       >
@@ -61,7 +69,7 @@ const App = () => {
           minHeight: 70,
           minWidth: 70,
         }}
-          onClick={() => device === 'controller' ? socket.emit('change', 'refresh') : window.location.reload()}
+          onClick={() => device === 'controller' ? socket.emit('change', 'refresh') : window.location.reload(true)}
 
         />
       </Box>

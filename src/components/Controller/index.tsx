@@ -83,12 +83,12 @@ export const Controller = (props: { socket: any }) => {
                         maxW="30%"
                         minH="90px"
                         fontSize="4xl"
-                        onClick={() => global.device === 'controller' ? props.socket.emit('change', 'halloween') : handleIsOpen('/halloween')}
+                        onClick={() => global.device === 'controller' ? props.socket.emit('change', 'holiday') : handleIsOpen('/holiday')}
                         m={1} colorScheme="gray" isFullWidth icon={<RiGhost2Fill />}
                     />
                 </Box>
                 <Divider color="whiteAlpha.300" marginBottom={4} mt={4} />
-                <Box flexDir="row" flexWrap="wrap" display="flex" justifyContent="center">
+                <Box flexDir="row" flexWrap="wrap" display="flex" justifyContent="flex-start">
                     {data.map((item: any) => (
                         <Button
                             aria-label="clock"
