@@ -2,6 +2,7 @@ import React from 'react';
 import { IconButton, Text, ScaleFade, useDisclosure, Button, Spinner } from '@chakra-ui/react';
 import { Box, Divider } from '@chakra-ui/layout';
 import { AiOutlineClockCircle, AiFillVideoCamera } from 'react-icons/ai';
+import { RiGhost2Fill } from 'react-icons/ri';
 import { TiWeatherPartlySunny } from 'react-icons/ti';
 import { FaDigitalTachograph } from 'react-icons/fa';
 
@@ -49,7 +50,7 @@ export const Controller = (props: { socket: any }) => {
                 <Text color={isDay ? "black" : 'white'} fontSize="2xl" fontWeight="900">Controller</Text>
                 <Text color={isDay ? "black" : 'white'} marginBottom={4} fontSize="xs">Change the view on the frame</Text>
                 <Divider color="whiteAlpha.300" marginBottom={4} />
-                <Box flexDir="row" flexWrap="wrap" display="flex" justifyContent="center">
+                <Box flexDir="row" flexWrap="wrap" display="flex" justifyContent="flex-start">
                     <IconButton
                         aria-label="clock"
                         maxW="30%"
@@ -76,6 +77,14 @@ export const Controller = (props: { socket: any }) => {
                         fontSize="4xl"
                         onClick={() => global.device === 'controller' ? props.socket.emit('change', 'digital-clock') : handleIsOpen('/digital-clock')}
                         m={1} colorScheme="gray" isFullWidth icon={<FaDigitalTachograph />}
+                    />
+                    <IconButton
+                        aria-label="clock"
+                        maxW="30%"
+                        minH="90px"
+                        fontSize="4xl"
+                        onClick={() => global.device === 'controller' ? props.socket.emit('change', 'halloween') : handleIsOpen('/halloween')}
+                        m={1} colorScheme="gray" isFullWidth icon={<RiGhost2Fill />}
                     />
                 </Box>
                 <Divider color="whiteAlpha.300" marginBottom={4} mt={4} />

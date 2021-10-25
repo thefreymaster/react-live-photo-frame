@@ -1,7 +1,7 @@
 import React from "react";
 
 export const useIsDay = () => {
-    const [isDay, setIsDay] = React.useState(false);
+    const [isDay, setIsDay] = React.useState(new Date().getHours() >= 6 && new Date().getHours() <= 17);
 
     React.useLayoutEffect(() => {
         const checkTimeOfDay = () => {
