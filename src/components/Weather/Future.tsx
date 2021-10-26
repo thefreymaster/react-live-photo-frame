@@ -19,7 +19,7 @@ export const Future = (props: {
     return (
         <Box display="flex" flexDir="column" alignItems="center" padding="1em" margin="1em" borderRadius="1em">
             <img style={{ maxWidth: '6em' }} alt="weather icon" src={`https://openweathermap.org/img/wn/${current.icon}@4x.png`} />
-            <Text fontWeight="300" fontSize="5em" color={isDay ? "black" : "white"}>
+            <Text letterSpacing="0px" fontFamily="'Anonymous Pro', monospace" fontWeight="300" fontSize="5em" color={isDay ? "black" : "white"}>
                 <CountUp useEasing duration="5" start={main.temp - 10} end={main.temp} />°
             </Text>
             <Text fontWeight="300" fontSize="2em" color={isDay ? "black" : "white"}>

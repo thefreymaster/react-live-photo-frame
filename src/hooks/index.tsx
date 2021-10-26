@@ -15,9 +15,11 @@ export const useIsDay = () => {
                 checkTimeOfDay();
             }, 300000);
         }
-    }, [])
+        checkTimeOfDay();
+    }, []);
+
     // if (new Date().getHours() >= 6 && new Date().getHours() <= 17) {
-    //     return
+    //     return true
     // }
     return isDay;
 }

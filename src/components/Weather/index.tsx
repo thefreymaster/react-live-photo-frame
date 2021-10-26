@@ -109,7 +109,7 @@ export const Weather = () => {
                 <Divider mt={5} mb={5} opacity={isDay ? 0.6 : 0.5} />
                 <Box display="flex" flexDir="row">
                     <Box pt={5} display="flex" justifyContent='flex-start' alignItems='flex-start' flexDir='column'>
-                        <Text lineHeight="0.9em" fontWeight="100" fontSize="14em" color={isDay ? "black" : "white"}>
+                        <Text letterSpacing="-10px" fontFamily="'Anonymous Pro', monospace" lineHeight="0.9em" fontWeight="100" fontSize="14em" color={isDay ? "black" : "white"}>
                             <CountUp useEasing duration="6" start={previousTemp || weather.main.temp - 10} end={weather.main.temp} />°
                         </Text>
                         <Text fontWeight="100" fontSize="2em" color={isDay ? "black" : "white"}>{current.description}</Text>
@@ -118,19 +118,19 @@ export const Weather = () => {
                     <Divider orientation="vertical" />
                     <Box display="flex" flexDir="column">
                         <Box display="flex" justifyContent='flex-end' alignItems='center' flexDir='column'>
-                            <Text lineHeight="60px" fontWeight="400" fontSize="3em" color={isDay ? "black" : "white"}>{weather.main.humidity}%</Text>
+                            <Text fontFamily="'Anonymous Pro', monospace" lineHeight="60px" fontWeight="400" fontSize="3em" color={isDay ? "black" : "white"}>{weather.main.humidity}%</Text>
                             <Text fontWeight="100" fontSize="2em" color={isDay ? "black" : "white"}>Humidity</Text>
                         </Box>
                         <Box flexGrow={1} />
                         <Divider mt={2} mb={2} />
                         <Box flexGrow={1} />
                         <Box display="flex" justifyContent='flex-end' alignItems='center' flexDir='column'>
-                            <Text lineHeight="60px" fontWeight="400" fontSize="3em" color={isDay ? "black" : "white"}>{weather.main.feels_like.toFixed(0)}°</Text>
+                            <Text fontFamily="'Anonymous Pro', monospace" lineHeight="60px" fontWeight="400" fontSize="3em" color={isDay ? "black" : "white"}>{weather.main.feels_like.toFixed(0)}°</Text>
                             <Text fontWeight="100" fontSize="2em" color={isDay ? "black" : "white"}>Feels Like</Text>
                         </Box>
                     </Box>
                     <Box flexGrow={1} />
-                    <Box display="flex" justifyContent='flex-end' alignItems='center' flexDir='column'>
+                    <Box display="flex" justifyContent='center' alignItems='center' flexDir='column'>
                         <BsFillArrowUpCircleFill color={isDay ? "black" : "white"} fontSize="72px" style={{ transform: `rotate(${weather.wind.deg}deg)`, transition: 'transform 1250ms ease-in-out' }} />
                         <Text lineHeight="60px" fontWeight="200" fontSize="3em" color={isDay ? "black" : "white"}>{weather.wind.speed}mph</Text>
                         <Text fontWeight="100" fontSize="2em" color={isDay ? "black" : "white"}>Wind</Text>
@@ -153,25 +153,6 @@ export const Weather = () => {
                         return null
                     })}
                 </Box>
-                {/* <Box p={10} display="flex" justifyContent='flex-start' alignItems='center'>
-                    <Text lineHeight="150px" fontWeight="100" fontSize="200px" color={isDay ? "black" : "white"}>{weather.main.temp.toFixed(0)}°</Text>
-                </Box>
-                <Box p={10} display="flex" justifyContent='flex-start' alignItems='center'>
-                    <Text lineHeight="40px" fontWeight="100" fontSize="70px" color={isDay ? "black" : "white"}>{weather.name}</Text>
-                </Box>
-                <Box p={10} display="flex" justifyContent='center' alignItems='flex-start' flexDir="row">
-                    <Box p={10} display="flex" justifyContent='center' alignItems='flex-start' flexDir="column">
-                        <Text lineHeight="60px" fontWeight="100" fontSize="100px" color={isDay ? "black" : "white"}>{weather.main.humidity.toFixed(0)}%</Text>
-                        <Text fontWeight="100" fontSize="40px" color={isDay ? "black" : "white"}>HUMIDITY</Text>
-                    </Box>
-                    <Box p={10} display="flex" justifyContent='center' alignItems='flex-start' flexDir="column">
-                        <Box display="flex" flexDir="row">
-                            <Text lineHeight="60px" fontWeight="100" fontSize="100px" color={isDay ? "black" : "white"}>{weather.wind.speed}mph</Text> */}
-                {/* </Box>
-                        <Text fontWeight="100" fontSize="40px" color={isDay ? "black" : "white"}>WIND</Text>
-                    </Box>
-                </Box> */}
-
             </Box>
         </ScaleFade>
     );

@@ -1,8 +1,6 @@
 import { Text } from '@chakra-ui/react';
 import { Box } from '@chakra-ui/layout';
-import React from 'react';
 import { useIsDay } from '../hooks';
-import { GiPumpkinMask } from 'react-icons/gi';
 import Lottie from 'react-lottie';
 import HALLOWEEN from './halloween.json';
 
