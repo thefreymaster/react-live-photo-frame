@@ -12,12 +12,12 @@ import { Holiday } from '../Holiday';
 export const Routes = (props: { socket: any, device: string }) => {
     const timeOfDay = useTimeOfDay();
     const history = useHistory();
-    if(timeOfDay === 7){
-        history.push('/weather')
-    }
-    if(timeOfDay === 21){
-        history.push('/digital-clock')
-    }
+    // if(timeOfDay === 7){
+    //     history.push('/weather')
+    // }
+    // if(timeOfDay === 21){
+    //     history.push('/digital-clock')
+    // }
     return (
         <Switch>
             <Route path="/weather">

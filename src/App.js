@@ -65,7 +65,7 @@ const App = () => {
           position: 'fixed',
           bottom: 0,
           left: 0,
-          borderRadius: '0px 5px 0px',
+          borderRadius: '0px 5px 0px 0px',
           minHeight: 70,
           minWidth: 70,
         }}

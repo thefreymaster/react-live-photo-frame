@@ -112,7 +112,7 @@ export const Weather = () => {
                         <Text lineHeight="0.9em" fontWeight="100" fontSize="14em" color={isDay ? "black" : "white"}>
                             <CountUp useEasing duration="6" start={previousTemp || weather.main.temp - 10} end={weather.main.temp} />°
                         </Text>
-                        <Text fontWeight="100" fontSize="2em" color={isDay ? "black" : "white"}>{current.main}, {current.description}</Text>
+                        <Text fontWeight="100" fontSize="2em" color={isDay ? "black" : "white"}>{current.description}</Text>
                     </Box>
                     <Box flexGrow={1} />
                     <Divider orientation="vertical" />
