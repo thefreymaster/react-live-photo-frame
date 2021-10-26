@@ -22,8 +22,8 @@ export const Holiday = () => {
             <Box mt="5em">
                 <Lottie
                     options={defaultOptions}
-                    height={300}
-                    width={400}
+                    height={400}
+                    width={700}
                 />
             </Box>
         </Box>
