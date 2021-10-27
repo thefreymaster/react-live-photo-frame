@@ -38,7 +38,7 @@ export const Future = (props: {
                 <CountUp useEasing duration="5" start={temp.day - 10} end={temp.day} />°
             </Text>
             <Box display="flex" flexDir="row">
-                <Text display="flex" flexDir="row" alignItems="center" justifyContent="center">
+                <Text fontFamily="'Anonymous Pro', monospace" display="flex" flexDir="row" alignItems="center" justifyContent="center">
                     <CgArrowLongUpC />
                     {temp.max.toFixed(0)}°
                     <Divider orientation="vertical" marginLeft="1" />
