@@ -1,0 +1,1 @@
+export const DEFAULT_MONO_FONT = "'Space Mono', monospace"

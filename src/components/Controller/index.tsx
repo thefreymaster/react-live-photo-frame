@@ -2,7 +2,6 @@ import React from 'react';
 import { IconButton, Text, ScaleFade, useDisclosure, Button, Spinner } from '@chakra-ui/react';
 import { Box, Divider } from '@chakra-ui/layout';
 import { AiOutlineClockCircle, AiFillVideoCamera } from 'react-icons/ai';
-import { RiGhost2Fill } from 'react-icons/ri';
 import { TiWeatherPartlySunny } from 'react-icons/ti';
 import { FaDigitalTachograph } from 'react-icons/fa';
 
@@ -11,6 +10,7 @@ import { useGlobalState } from '../../providers/index';
 import { useHistory, Redirect } from 'react-router-dom';
 import { getVideosList } from '../../api';
 import { useQuery } from 'react-query';
+import { GiOakLeaf } from 'react-icons/gi';
 
 const capitalizeFirstLetter = (string: string) => {
     return string.charAt(0).toUpperCase() + string.slice(1).replace('.mp4', '');
@@ -84,7 +84,7 @@ export const Controller = (props: { socket: any }) => {
                         minH="90px"
                         fontSize="4xl"
                         onClick={() => global.device === 'controller' ? props.socket.emit('change', 'holiday') : handleIsOpen('/holiday')}
-                        m={1} colorScheme="gray" isFullWidth icon={<RiGhost2Fill />}
+                        m={1} colorScheme="gray" isFullWidth icon={<GiOakLeaf />}
                     />
                 </Box>
                 <Divider color="whiteAlpha.300" marginBottom={4} mt={4} />

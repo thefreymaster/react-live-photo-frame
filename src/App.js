@@ -20,7 +20,7 @@ const App = () => {
 
   const getBackgroundColor = () => {
     if(location.pathname.includes('holiday')){
-      return 'black'
+      return '#D4B95E'
     }
     return isDay ? '#fff' : '#000'
   }

@@ -2,7 +2,7 @@ import { Text } from '@chakra-ui/react';
 import { Box } from '@chakra-ui/layout';
 import { useIsDay } from '../hooks';
 import Lottie from 'react-lottie';
-import HALLOWEEN from './halloween.json';
+import HOLIDAY from './holiday.json';
 
 export const Holiday = () => {
     const isDay = useIsDay();
@@ -10,13 +10,13 @@ export const Holiday = () => {
     const defaultOptions = {
         loop: true,
         autoplay: true,
-        animationData: HALLOWEEN,
+        animationData: HOLIDAY,
     };
 
     return (
         <Box display="flex" flexDir="column" alignItems="center" lineHeight="10em">
-            <Text color="#ff7b00" fontSize="6em" fontFamily="'Festive', cursive">Happy</Text>
-            <Text color="#ff7b00" fontSize="14em" fontFamily="'Festive', cursive">Halloween</Text>
+            <Text color="#9e2a2b" fontSize="6em" fontFamily="'Festive', cursive">It's Fall</Text>
+            <Text color="#9e2a2b" fontSize="14em" fontFamily="'Festive', cursive">Y'all</Text>
             <Box mt="5em">
                 <Lottie
                     options={defaultOptions}

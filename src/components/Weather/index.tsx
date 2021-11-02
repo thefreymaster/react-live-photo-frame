@@ -8,6 +8,7 @@ import { useIsDay } from '../../hooks/index';
 import { Future } from './Future';
 import CountUp from 'react-countup';
 import { DigitalClock } from '../DigitalClock';
+import { DEFAULT_MONO_FONT } from '../../constants';
 
 export const Weather = () => {
     const isDay = useIsDay();
@@ -104,7 +105,7 @@ export const Weather = () => {
                 </Box>
                 <Box display="flex" flexDir="row">
                     <Box pt={5} display="flex" justifyContent='flex-start' alignItems='flex-start' flexDir='column'>
-                        <Text letterSpacing="-10px" fontFamily="'Anonymous Pro', monospace" lineHeight="0.9em" fontWeight="100" fontSize="14em" color={isDay ? "black" : "white"}>
+                        <Text letterSpacing="-10px" fontFamily={DEFAULT_MONO_FONT} lineHeight="0.9em" fontWeight="100" fontSize="14em" color={isDay ? "black" : "white"}>
                             <CountUp useEasing duration="6" start={previousTemp || weather.current.temp - 10} end={weather.current.temp} />°
                         </Text>
                         <Text fontWeight="100" fontSize="2em" color={isDay ? "black" : "white"}>{liveWeather.description}</Text>
@@ -113,21 +114,21 @@ export const Weather = () => {
                     <Divider orientation="vertical" />
                     <Box display="flex" flexDir="column">
                         <Box display="flex" justifyContent='flex-end' alignItems='center' flexDir='column'>
-                            <Text fontFamily="'Anonymous Pro', monospace" lineHeight="60px" fontWeight="400" fontSize="3em" color={isDay ? "black" : "white"}>{weather.current.humidity}%</Text>
+                            <Text fontFamily={DEFAULT_MONO_FONT} lineHeight="60px" fontWeight="400" fontSize="3em" color={isDay ? "black" : "white"}>{weather.current.humidity}%</Text>
                             <Text fontWeight="100" fontSize="2em" color={isDay ? "black" : "white"}>Humidity</Text>
                         </Box>
                         <Box flexGrow={1} />
                         <Divider mt={2} mb={2} />
                         <Box flexGrow={1} />
                         <Box display="flex" justifyContent='flex-end' alignItems='center' flexDir='column'>
-                            <Text fontFamily="'Anonymous Pro', monospace" lineHeight="60px" fontWeight="400" fontSize="3em" color={isDay ? "black" : "white"}>{weather.current.feels_like.toFixed(0)}°</Text>
+                            <Text fontFamily={DEFAULT_MONO_FONT} lineHeight="60px" fontWeight="400" fontSize="3em" color={isDay ? "black" : "white"}>{weather.current.feels_like.toFixed(0)}°</Text>
                             <Text fontWeight="100" fontSize="2em" color={isDay ? "black" : "white"}>Feels Like</Text>
                         </Box>
                     </Box>
                     <Box flexGrow={1} />
                     <Box display="flex" justifyContent='center' alignItems='center' flexDir='column'>
                         <BsFillArrowUpCircleFill color={isDay ? "black" : "white"} fontSize="72px" style={{ transform: `rotate(${weather.current.wind_deg}deg)`, transition: 'transform 1250ms ease-in-out' }} />
-                        <Text fontFamily="'Anonymous Pro', monospace" lineHeight="60px" fontWeight="200" fontSize="3em" color={isDay ? "black" : "white"}>{weather.current.wind_speed.toFixed(0)}mph</Text>
+                        <Text fontFamily={DEFAULT_MONO_FONT} lineHeight="60px" fontWeight="200" fontSize="3em" color={isDay ? "black" : "white"}>{weather.current.wind_speed.toFixed(0)}mph</Text>
                         <Text fontWeight="100" fontSize="2em" color={isDay ? "black" : "white"}>Wind</Text>
                     </Box>
                     <Box flexGrow={1} />
