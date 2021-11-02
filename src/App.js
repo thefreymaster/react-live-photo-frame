@@ -3,14 +3,14 @@ import React from 'react';
 import { Box, IconButton } from '@chakra-ui/react';
 import { Routes } from './routes';
 import { useIsDay } from './hooks/index';
-import { CgController } from 'react-icons/cg';
+import { GiRetroController } from 'react-icons/gi';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { isMobile } from 'react-device-detect';
 import { io } from "socket.io-client";
 import { Provider } from './providers';
 import { IoIosRefresh } from 'react-icons/io';
 
-const socket = io('http://192.168.124.124:4000');
+const socket = io(`http://${process.env.REACT_APP_SERVER_IP}:4000`);
 
 const App = () => {
   const isDay = useIsDay();
@@ -19,10 +19,10 @@ const App = () => {
   const [device, setDevice] = React.useState(localStorage.getItem('device'));
 
   const getBackgroundColor = () => {
-    if(location.pathname.includes('holiday')){
-      return '#D4B95E'
+    if (location.pathname.includes('holiday')) {
+      return '#fff3cb'
     }
-    return isDay ? '#fff' : '#000'
+    return isDay ? '#fafafa' : '#000'
   }
 
   React.useEffect(() => {
@@ -51,8 +51,8 @@ const App = () => {
         pt={isMobile && 8}
       >
         <Routes socket={socket} device={device} />
-        <Link to="/controller">
-          <IconButton colorScheme="gray" size="lg" icon={<CgController />} style={{
+        {!location.pathname.includes('controller') && !location.pathname.includes('device') && <Link to="/controller">
+          <IconButton colorScheme="gray" size="lg" icon={<GiRetroController />} style={{
             position: 'fixed',
             bottom: 0,
             right: 0,
@@ -60,7 +60,7 @@ const App = () => {
             minHeight: 70,
             minWidth: 70
           }} />
-        </Link>
+        </Link>}
         <IconButton colorScheme="gray" size="lg" icon={<IoIosRefresh />} style={{
           position: 'fixed',
           bottom: 0,

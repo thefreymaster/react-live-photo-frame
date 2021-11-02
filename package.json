@@ -32,6 +32,7 @@
     "ws": "^8.2.3"
   },
   "scripts": {
+    "app": "node index.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

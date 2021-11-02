@@ -10,7 +10,8 @@ export const Future = (props: {
     index: number,
     forcast: {
         weather: Array<{
-            icon: string
+            icon: string,
+            main: string,
         }>
         temp: {
             day: number,
@@ -37,9 +38,6 @@ export const Future = (props: {
                 {getDayOfWeek()}
             </Text>
             <img style={{ maxWidth: '6em' }} alt="weather icon" src={`https://openweathermap.org/img/wn/${current.icon}@4x.png`} />
-            {/* <Text letterSpacing="0px" fontFamily={DEFAULT_MONO_FONT} fontWeight="300" fontSize="5em" color={isDay ? "black" : "white"}>
-                <CountUp useEasing duration="5" start={temp.day - 10} end={temp.day} />°
-            </Text> */}
             <Box display="flex" flexDir="row">
                 <Text fontSize="2em" fontWeight="100" fontFamily={DEFAULT_MONO_FONT} display="flex" flexDir="row" alignItems="center" justifyContent="center">
                     <CgArrowLongUpC />
@@ -49,6 +47,7 @@ export const Future = (props: {
                     {temp.min.toFixed(0)}°
                 </Text>
             </Box>
+            <Text fontSize="2em" fontWeight="100">{current.main}</Text>
         </Box>
     )
 }

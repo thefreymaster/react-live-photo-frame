@@ -51,41 +51,58 @@ export const Controller = (props: { socket: any }) => {
                 <Text color={isDay ? "black" : 'white'} marginBottom={4} fontSize="xs">Change the view on the frame</Text>
                 <Divider color="whiteAlpha.300" marginBottom={4} />
                 <Box flexDir="row" flexWrap="wrap" display="flex" justifyContent="flex-start">
-                    <IconButton
-                        aria-label="clock"
-                        maxW="30%"
-                        minH="90px"
-                        fontSize="4xl"
-                        onClick={() => global.device === 'controller' ? props.socket.emit('change', 'clock') : handleIsOpen('/clock')}
-                        m={1}
-                        colorScheme="gray"
-                        isFullWidth
-                        icon={<AiOutlineClockCircle />}
-                    />
-                    <IconButton
-                        aria-label="clock"
-                        maxW="30%"
-                        minH="90px"
-                        fontSize="4xl"
-                        onClick={() => global.device === 'controller' ? props.socket.emit('change', 'weather') : handleIsOpen('/weather')}
-                        m={1} colorScheme="gray" isFullWidth icon={<TiWeatherPartlySunny />}
-                    />
-                    <IconButton
-                        aria-label="clock"
-                        maxW="30%"
-                        minH="90px"
-                        fontSize="4xl"
-                        onClick={() => global.device === 'controller' ? props.socket.emit('change', 'digital-clock') : handleIsOpen('/digital-clock')}
-                        m={1} colorScheme="gray" isFullWidth icon={<FaDigitalTachograph />}
-                    />
-                    <IconButton
+                    <Button
                         aria-label="clock"
                         maxW="30%"
                         minH="90px"
                         fontSize="4xl"
                         onClick={() => global.device === 'controller' ? props.socket.emit('change', 'holiday') : handleIsOpen('/holiday')}
-                        m={1} colorScheme="gray" isFullWidth icon={<GiOakLeaf />}
-                    />
+                        m={1} colorScheme="gray" isFullWidth
+                    >
+                        <Box display="flex" flexDir="column" alignItems="center" justifyContent="center">
+                            <AiOutlineClockCircle />
+                            <Text fontSize="xs" mt="1">Analog</Text>
+                        </Box>
+                    </Button>
+                    <Button
+                        aria-label="clock"
+                        maxW="30%"
+                        minH="90px"
+                        fontSize="4xl"
+                        onClick={() => global.device === 'controller' ? props.socket.emit('change', 'weather') : handleIsOpen('/weather')}
+                        m={1} colorScheme="gray" isFullWidth
+                    >
+                        <Box display="flex" flexDir="column" alignItems="center" justifyContent="center">
+                            <TiWeatherPartlySunny />
+                            <Text fontSize="xs" mt="1">Weather</Text>
+                        </Box>
+                    </Button>
+                    <Button
+                        aria-label="clock"
+                        maxW="30%"
+                        minH="90px"
+                        fontSize="4xl"
+                        onClick={() => global.device === 'controller' ? props.socket.emit('change', 'digital-clock') : handleIsOpen('/digital-clock')}
+                        m={1} colorScheme="gray" isFullWidth
+                    >
+                        <Box display="flex" flexDir="column" alignItems="center" justifyContent="center">
+                            <FaDigitalTachograph />
+                            <Text fontSize="xs" mt="1">Digital</Text>
+                        </Box>
+                    </Button>
+                    <Button
+                        aria-label="clock"
+                        maxW="30%"
+                        minH="90px"
+                        fontSize="4xl"
+                        onClick={() => global.device === 'controller' ? props.socket.emit('change', 'holiday') : handleIsOpen('/holiday')}
+                        m={1} colorScheme="gray" isFullWidth
+                    >
+                        <Box display="flex" flexDir="column" alignItems="center" justifyContent="center">
+                            <GiOakLeaf />
+                            <Text fontSize="xs" mt="1">Holiday</Text>
+                        </Box>
+                    </Button>
                 </Box>
                 <Divider color="whiteAlpha.300" marginBottom={4} mt={4} />
                 <Box flexDir="row" flexWrap="wrap" display="flex" justifyContent="flex-start">
@@ -98,7 +115,7 @@ export const Controller = (props: { socket: any }) => {
                             onClick={() => global.device === 'controller' ? props.socket.emit('change', `videos/${item}`) : handleIsOpen(`videos/${item}`)}
                             m={1} colorScheme="gray" isFullWidth
                         >
-                            <Box display="flex-column" alignItems="center" justifyContent="center">
+                            <Box display="flex" flexDir="column" alignItems="center" justifyContent="center">
                                 <AiFillVideoCamera />
                                 <Text fontSize="small">{capitalizeFirstLetter(item)}</Text>
                             </Box>
