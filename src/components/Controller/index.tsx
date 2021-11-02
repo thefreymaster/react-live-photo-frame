@@ -56,7 +56,7 @@ export const Controller = (props: { socket: any }) => {
                         maxW="30%"
                         minH="90px"
                         fontSize="4xl"
-                        onClick={() => global.device === 'controller' ? props.socket.emit('change', 'holiday') : handleIsOpen('/holiday')}
+                        onClick={() => global.device === 'controller' ? props.socket.emit('change', 'clock') : handleIsOpen('/clock')}
                         m={1} colorScheme="gray" isFullWidth
                     >
                         <Box display="flex" flexDir="column" alignItems="center" justifyContent="center">
