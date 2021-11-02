@@ -96,7 +96,7 @@ export const Weather = () => {
                 </Box>
                 <Divider mt={5} mb={5} opacity={isDay ? 0.6 : 0.5} />
                 <Box display="flex" justifyContent='center' alignItems='center' flexDir='row' pb="4">
-                    {alerts.map((alert: any) => (
+                    {alerts && alerts.map((alert: any) => (
                         <Box mr="1">
                             <Tag>{alert.event}</Tag>
                         </Box>
