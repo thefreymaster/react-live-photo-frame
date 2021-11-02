@@ -39,7 +39,7 @@ export const Future = (props: {
             </Text>
             <img style={{ maxWidth: '6em' }} alt="weather icon" src={`https://openweathermap.org/img/wn/${current.icon}@4x.png`} />
             <Box display="flex" flexDir="row">
-                <Text fontSize="2em" fontWeight="100" fontFamily={DEFAULT_MONO_FONT} display="flex" flexDir="row" alignItems="center" justifyContent="center">
+                <Text color={isDay ? "black" : "white"} fontSize="2em" fontWeight="100" fontFamily={DEFAULT_MONO_FONT} display="flex" flexDir="row" alignItems="center" justifyContent="center">
                     <CgArrowLongUpC />
                     {temp.max.toFixed(0)}°
                     <Divider orientation="vertical" marginLeft="1" />
@@ -47,7 +47,7 @@ export const Future = (props: {
                     {temp.min.toFixed(0)}°
                 </Text>
             </Box>
-            <Text fontSize="2em" fontWeight="100">{current.main}</Text>
+            <Text color={isDay ? "black" : "white"} fontSize="2em" fontWeight="100">{current.main}</Text>
         </Box>
     )
 }

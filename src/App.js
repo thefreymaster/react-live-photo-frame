@@ -23,7 +23,7 @@ const App = () => {
       return '#fff3cb'
     }
     if (location.pathname.includes('weather')) {
-      return '#e2e2e2'
+      return isDay ? '#e2e2e2' : '#000'
     }
     return isDay ? '#fff' : '#000'
   }

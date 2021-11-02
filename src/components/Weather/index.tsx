@@ -109,7 +109,7 @@ export const Weather = () => {
                         </Text>
                         <Text fontWeight="100" fontSize="2em" color={isDay ? "black" : "white"}>{liveWeather.description}</Text>
                         <Box display="flex" flexDir="row">
-                            <Text fontSize="2em" fontWeight="100" fontFamily={DEFAULT_MONO_FONT} display="flex" flexDir="row" alignItems="center" justifyContent="center">
+                            <Text fontSize="2em" fontWeight="100" fontFamily={DEFAULT_MONO_FONT} display="flex" flexDir="row" alignItems="center" justifyContent="center" color={isDay ? "black" : "white"}>
                                 <CgArrowLongUpC />
                                 {todaysWeather.temp.max.toFixed(0)}°
                                 <Divider orientation="vertical" marginLeft="1" />
