@@ -47,6 +47,7 @@ const App = () => {
         justifyContent='center'
         style={{
           backgroundColor: getBackgroundColor(),
+          overflow: 'hidden',
         }}
         pt={isMobile && 8}
       >
