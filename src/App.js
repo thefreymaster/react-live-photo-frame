@@ -22,7 +22,10 @@ const App = () => {
     if (location.pathname.includes('holiday')) {
       return '#fff3cb'
     }
-    return isDay ? '#e2e2e2' : '#000'
+    if (location.pathname.includes('weather')) {
+      return '#e2e2e2'
+    }
+    return isDay ? '#fff' : '#000'
   }
 
   React.useEffect(() => {

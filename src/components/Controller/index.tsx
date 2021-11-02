@@ -113,7 +113,10 @@ export const Controller = (props: { socket: any }) => {
                             minH="90px"
                             fontSize="4xl"
                             onClick={() => global.device === 'controller' ? props.socket.emit('change', `videos/${item.replace('.mp4', '')}`) : handleIsOpen(`videos/${item.replace('.mp4', '')}`)}
-                            m={1} colorScheme="gray" isFullWidth
+                            m={1} 
+                            colorScheme="gray" 
+                            isFullWidth
+                            key={item}
                         >
                             <Box display="flex" flexDir="column" alignItems="center" justifyContent="center">
                                 <AiFillVideoCamera />

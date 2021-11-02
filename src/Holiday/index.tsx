@@ -2,6 +2,7 @@ import { ScaleFade, Text } from '@chakra-ui/react';
 import { Box } from '@chakra-ui/layout';
 import Lottie from 'react-lottie';
 import HOLIDAY from './holiday.json';
+import { DigitalClock } from '../components/DigitalClock';
 
 export const Holiday = () => {
 
@@ -24,6 +25,7 @@ export const Holiday = () => {
                     />
                 </Box>
             </Box>
+            <DigitalClock hideTime />
         </ScaleFade>
     )
 }

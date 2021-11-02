@@ -8,6 +8,7 @@ import { Weather } from '../components/Weather';
 import { DigitalClock } from '../components/DigitalClock/index';
 import { useTimeOfDay } from '../hooks';
 import { Holiday } from '../Holiday';
+import { Announcement } from '../components/Announcement/index';
 
 export const Routes = (props: { socket: any, device: string }) => {
     const timeOfDay = useTimeOfDay();
@@ -40,6 +41,9 @@ export const Routes = (props: { socket: any, device: string }) => {
             </Route>
             <Route path="/holiday">
                 <Holiday />
+            </Route>
+            <Route path="/announcement/:previous">
+                <Announcement />
             </Route>
             <Route path="/*">
                 <Redirect to="/controller" />

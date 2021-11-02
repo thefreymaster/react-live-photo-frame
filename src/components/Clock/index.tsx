@@ -2,6 +2,7 @@ import { ScaleFade } from '@chakra-ui/react';
 import React from 'react';
 import AnalogClock from 'react-analog-clock';
 import { useIsDay } from '../../hooks/index';
+import { DigitalClock } from '../DigitalClock';
 
 export const Clock = () => {
     const isDay = useIsDay();
@@ -21,6 +22,7 @@ export const Clock = () => {
     return (
         <ScaleFade initialScale={0.9} in>
             <AnalogClock theme={theme} />
+            <DigitalClock hideTime />
         </ScaleFade>
     )
 }
