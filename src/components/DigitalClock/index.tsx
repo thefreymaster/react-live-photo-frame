@@ -7,7 +7,6 @@ import { useHistory } from 'react-router-dom';
 
 export const DigitalClock = (props: { fontSize?: string, hideTime?: boolean }) => {
     const history = useHistory();
-    console.log(history)
     const isDay = useIsDay();
     let now = new Date();
     const [time, setTime] = React.useState(now.toLocaleTimeString());

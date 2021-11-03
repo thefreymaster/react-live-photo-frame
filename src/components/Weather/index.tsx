@@ -42,25 +42,23 @@ export const Weather = () => {
 
     React.useLayoutEffect(() => {
         const getWeather = async () => {
-            const { data }: any = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${process.env.REACT_APP_LOCATION}&appid=${process.env.REACT_APP_OPENWEATHERMAP}&units=imperial`)
-            const { data: weather }: any = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&exclude=minutely,hourly&appid=${process.env.REACT_APP_OPENWEATHERMAP}&units=imperial`)
-            setWeather({ ...weather, city: data.name, loading: false });
+            const { data: weather }: any = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${process.env.REACT_APP_LAT}&lon=${process.env.REACT_APP_LONG}&exclude=minutely,hourly&appid=${process.env.REACT_APP_OPENWEATHERMAP}&units=imperial`)
+            setWeather({ ...weather, city: process.env.REACT_APP_CITY, loading: false });
         }
         getWeather();
     }, []);
 
     React.useLayoutEffect(() => {
         const getWeather = async () => {
-            const { data }: any = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${process.env.REACT_APP_LOCATION}&appid=${process.env.REACT_APP_OPENWEATHERMAP}&units=imperial`)
-            const { data: weather }: any = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&exclude=minutely,hourly&appid=${process.env.REACT_APP_OPENWEATHERMAP}&units=imperial`)
-            setWeather({ ...weather, city: data.name, loading: false });
+            const { data: weather }: any = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${process.env.REACT_APP_LAT}&lon=${process.env.REACT_APP_LONG}&exclude=minutely,hourly&appid=${process.env.REACT_APP_OPENWEATHERMAP}&units=imperial`)
+            setWeather({ ...weather, city: process.env.REACT_APP_CITY, loading: false });
             setTimeout(() => {
                 getWeather();
-            }, 60000);
+            }, 300000);
         }
         setTimeout(() => {
             getWeather();
-        }, 60000);
+        }, 300000);
     }, []);
 
     const today = new Date();
@@ -159,7 +157,7 @@ export const Weather = () => {
                         if (index !== 0 && index < 5) {
                             return (
                                 <>
-                                    <Box flexGrow={1} />
+                                    <Box key={item} flexGrow={1} />
                                     <Future forcast={item} index={index} />
                                     <Box flexGrow={1} />
                                 </>
