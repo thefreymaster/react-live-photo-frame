@@ -141,13 +141,17 @@ export const Weather = () => {
                             <Text fontWeight="100" fontSize="2em" color={isDay ? "black" : "white"}>Wind</Text>
                         </Box>
                         <Box flexGrow={1} />
-                        <Divider mt={2} mb={2} />
-                        <Box flexGrow={1} />
-                        <Box display="flex" justifyContent='center' alignItems='center' flexDir='column'>
-                            <WiStrongWind color={isDay ? "black" : "white"} fontSize="60px" />
-                            <Text fontFamily={DEFAULT_MONO_FONT} lineHeight="60px" fontWeight="200" fontSize="3em" color={isDay ? "black" : "white"}>{weather.current.wind_gust.toFixed(0)}mph</Text>
-                            <Text fontWeight="100" fontSize="2em" color={isDay ? "black" : "white"}>Gusts</Text>
-                        </Box>
+                        {weather.current?.wind_gust &&
+                            <>
+                                <Divider mt={2} mb={2} />
+                                <Box flexGrow={1} />
+                                <Box display="flex" justifyContent='center' alignItems='center' flexDir='column'>
+                                    <WiStrongWind color={isDay ? "black" : "white"} fontSize="60px" />
+                                    <Text fontFamily={DEFAULT_MONO_FONT} lineHeight="60px" fontWeight="200" fontSize="3em" color={isDay ? "black" : "white"}>{weather.current?.wind_gust?.toFixed(0)}mph</Text>
+                                    <Text fontWeight="100" fontSize="2em" color={isDay ? "black" : "white"}>Gusts</Text>
+                                </Box>
+                            </>
+                        }
                     </Box>
                     <Box flexGrow={1} />
                 </Box>
