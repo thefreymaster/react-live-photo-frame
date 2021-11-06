@@ -54,11 +54,11 @@ export const Weather = () => {
             setWeather({ ...weather, city: process.env.REACT_APP_CITY, loading: false });
             setTimeout(() => {
                 getWeather();
-            }, 300000);
+            }, 900000);
         }
         setTimeout(() => {
             getWeather();
-        }, 300000);
+        }, 900000);
     }, []);
 
     const today = new Date();
