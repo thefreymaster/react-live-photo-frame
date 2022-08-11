@@ -90,7 +90,7 @@ export const Weather = () => {
   }
   return (
     <ScaleFade initialScale={0.9} in>
-      <Box display="flex" flexDir="column" padding="70px">
+      <Box display="flex" flexDir="column">
         <Box display="flex" flexDir="row" alignItems="center">
           <Box display="flex" flexDir="column">
             <Box
